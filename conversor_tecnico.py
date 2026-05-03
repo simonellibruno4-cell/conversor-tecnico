@@ -20,14 +20,22 @@ if tanda == "Distancia y Longitud":
     ])
     val = st.number_input("Ingresá el valor:", value=0.0)
     
-    if "." in op: st.success(f"{val} metros son {val * 3.28084:.4f} pies.")
-    elif "." in op: st.success(f"{val} pies son {val / 3.28084:.4f} metros.")
-    elif "." in op: st.success(f"{val} cm son {val / 2.54:.4f} pulgadas.")
-    elif "." in op: st.success(f"{val} pulgadas son {val * 2.54:.4f} cm.")
-    elif "." in op: st.success(f"{val} km son {val / 1.60934:.4f} millas.")
-    elif "." in op: st.success(f"{val} millas son {val * 1.60934:.4f} km.")
-    elif "." in op: st.success(f"{val} yardas son {val * 0.9144:.4f} metros.")
-    elif "." in op: st.success(f"{val} metros son {val / 0.9144:.4f} yardas.")
+    if op == "Metros a Pies": 
+        st.success(f"{val} metros son {val * 3.28084:.4f} pies.")
+    elif op == "Pies a Metros": 
+        st.success(f"{val} pies son {val / 3.28084:.4f} metros.")
+    elif op == "Centímetros a Pulgadas": 
+        st.success(f"{val} cm son {val / 2.54:.4f} pulgadas.")
+    elif op == "Pulgadas a Centímetros": 
+        st.success(f"{val} pulgadas son {val * 2.54:.4f} cm.")
+    elif op == "Kilómetros a Millas": 
+        st.success(f"{val} km son {val / 1.60934:.4f} millas.")
+    elif op == "Millas a Kilómetros": 
+        st.success(f"{val} millas son {val * 1.60934:.4f} km.")
+    elif op == "Yardas a Metros": 
+        st.success(f"{val} yardas son {val * 0.9144:.4f} metros.")
+    elif op == "Metros a Yardas": 
+        st.success(f"{val} metros son {val / 0.9144:.4f} yardas.")
 
 # --- 2. MASA Y VOLUMEN ---
 elif tanda == "Masa y Volumen":
@@ -39,9 +47,13 @@ elif tanda == "Masa y Volumen":
     ])
     val = st.number_input("Ingresá el valor:", value=0.0)
     
-    if "." in op: st.success(f"{val} g = {val / 28.3495:.4f} oz")
-    elif "." in op: st.success(f"{val} kg = {val * 2.20462:.4f} lb")
-    # Agregá los demás de tu lista aquí siguiendo el mismo patrón
+    if op == "Gramos a Onzas": 
+        st.success(f"{val} g = {val / 28.3495:.4f} oz")
+    elif op == "Kilogramos a Libras": 
+        st.success(f"{val} kg = {val * 2.20462:.4f} lb")
+    elif op == "Litros a Galones":
+        st.success(f"{val} L = {val / 3.78541:.4f} gal")
+    # Agregá aquí los elif para las demás opciones siguiendo el mismo nombre exacto
 
 # --- 3. TIEMPO Y FECHAS ---
 elif tanda == "Tiempo y Fechas":
@@ -53,23 +65,26 @@ elif tanda == "Tiempo y Fechas":
     ])
     val = st.number_input("Valor de tiempo:", value=0.0)
     
-    if "." in op: st.info(f"{val} seg = {val / 60:.2f} min")
-    elif "." in op: st.info(f"{val} años = {val * 365:.0f} días")
+    if op == "Segundos a Minutos": 
+        st.info(f"{val} seg = {val / 60:.2f} min")
+    elif op == "Minutos a Segundos":
+        st.info(f"{val} min = {val * 60:.0f} seg")
+    elif op == "Años a Días": 
+        st.info(f"{val} años = {val * 365:.0f} días")
 
 # --- 4. FÍSICA Y MECÁNICA ---
 elif tanda == "Física y Mecánica":
     st.header("⚡ Física")
     op = st.selectbox("Cálculo:", [
         "Velocidad (Distancia y Tiempo)", "Fuerza (Masa y Aceleración)", 
-        "Energía", "Potencia", "Presión", "Densidad",
-        "Frecuencia", "Periodo"
+        "Energía", "Potencia", "Presión", "Densidad"
     ])
     
-    if "." in op:
+    if op == "Velocidad (Distancia y Tiempo)":
         d = st.number_input("Distancia:")
         t = st.number_input("Tiempo:", min_value=0.0001)
         st.success(f"Velocidad: {d/t:.2f} unidades/t")
-    elif "." in op:
+    elif op == "Fuerza (Masa y Aceleración)":
         m = st.number_input("Masa (kg):")
         a = st.number_input("Aceleración (m/s²):")
         st.success(f"Fuerza: {m * a:.2f} N")
@@ -82,10 +97,10 @@ elif tanda == "Geometría":
         "Volumen Esfera", "Área Rectángulo", "Volumen Cubo"
     ])
     
-    if "Área Círculo" in op:
+    if op == "Área Círculo":
         r = st.number_input("Radio:")
         st.success(f"Área: {math.pi * r**2:.4f}")
-    elif "Volumen Esfera" in op:
+    elif op == "Volumen Esfera":
         r = st.number_input("Radio:")
         st.success(f"Volumen: {(4/3) * math.pi * r**3:.4f}")
 
@@ -97,10 +112,10 @@ elif tanda == "Salud y Temperatura":
         "Kelvin a Celsius", "Celsius a Kelvin"
     ])
     
-    if "Celsius a Fahrenheit" in op:
+    if op == "Celsius a Fahrenheit":
         c = st.number_input("°C:")
         st.success(f"{(c * 9/5) + 32:.2f} °F")
-    elif "IMC" in op:
+    elif op == "IMC":
         p = st.number_input("Peso (kg):")
         h = st.number_input("Altura (m):")
         if h > 0: st.info(f"Tu IMC es {p / (h**2):.2f}")
