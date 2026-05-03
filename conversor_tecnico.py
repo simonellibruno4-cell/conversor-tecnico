@@ -123,14 +123,38 @@ elif tanda == "Salud y Temperatura":
     ])
     
     if op == "Celsius a Fahrenheit":
-        c = st.number_input("°C:")
+        c = st.number_input("Ingresá °C:", value=0.0)
         st.success(f"{c} °C son {(c * 9/5) + 32:.2f} °F")
-    elif op == "Celsius a Kelvin":
-        c = st.number_input("°C:")
-        st.success(f"{c} °C son {c + 273.15:.2f} K")
+        
+    elif op == "Fahrenheit a Celsius":
+        f = st.number_input("Ingresá °F:", value=32.0)
+        st.success(f"{f} °F son {(f - 32) * 5/9:.2f} °C")
+
     elif op == "IMC":
-        p = st.number_input("Peso (kg):", value=70.0)
-        h = st.number_input("Altura (m):", value=1.75)
-        if h > 0: 
-            imc = p / (h**2)
-            st.info(f"Tu IMC es {imc:.2f}")
+        st.subheader("📊 Calculadora de Índice de Masa Corporal")
+        peso = st.number_input("Peso (kg):", value=70.0, step=0.1)
+        altura = st.number_input("Altura (m):", value=1.70, step=0.01)
+        
+        if altura > 0:
+            imc = peso / (altura ** 2)
+            st.info(f"Tu IMC es: **{imc:.2f}**")
+            
+            # Clasificación del IMC
+            if imc < 18.5:
+                st.warning("Clasificación: **Bajo peso**")
+            elif 18.5 <= imc < 25:
+                st.success("Clasificación: **Peso normal (Saludable)**")
+            elif 25 <= imc < 30:
+                st.warning("Clasificación: **Sobrepeso**")
+            else:
+                st.error("Clasificación: **Obesidad**")
+        else:
+            st.error("La altura debe ser mayor a 0.")
+
+    elif op == "Celsius a Kelvin":
+        c = st.number_input("Ingresá °C:", value=0.0)
+        st.success(f"{c} °C son {c + 273.15:.2f} K")
+        
+    elif op == "Kelvin a Celsius":
+        k = st.number_input("Ingresá K:", value=273.15)
+        st.success(f"{k} K son {k - 273.15:.2f} °C")
